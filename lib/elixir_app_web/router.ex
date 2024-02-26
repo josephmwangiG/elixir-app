@@ -1,5 +1,6 @@
 defmodule ElixirAppWeb.Router do
   use ElixirAppWeb, :router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -18,6 +19,18 @@ defmodule ElixirAppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/app", HomePage
+    live "/app/users", UsersPage
+    live "/app/about", AboutPage
+    live "/app/create/user", CreateUser
+  end
+
+  scope "/api", ElixirAppWeb do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+    resources "/posts", PostController, except: [:new, :edit]
+
   end
 
   # Other scopes may use custom stacks.

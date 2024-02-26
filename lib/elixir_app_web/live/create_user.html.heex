@@ -1,0 +1,117 @@
+<div
+  class="mx-auto w-1/2 space-y-8 p-10 bg-white rounded-xl shadow-lg z-10 my-8"
+>
+  <div class="grid gap-8 grid-cols-1">
+    <div class="flex flex-col">
+      <div class="flex flex-col sm:flex-row items-center">
+        <h2 class="font-semibold text-lg mr-auto">User Info</h2>
+        <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
+      </div>
+      <div class="mt-5">
+        <.form for={@form} phx-submit="create" phx-change="validate">
+          
+
+          <div class="form">
+            <div class="md:flex flex-row md:space-x-4 w-full text-sm">
+              <div class="mb-3 w-full flex-col flex text-sm">
+                <label for="username" class="font-semibold text-gray-600 my-4"
+                  >User Name <abbr title="required">*</abbr></label>
+                <.input
+                  placeholder="Username"
+                  class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                  type="text"
+                  field={@form[:username]}
+                  id="username"
+                  phx-debounce="blur"
+                />
+                <p class="text-red text-sm hidden">
+                  Please fill out this field.
+                </p>
+              </div>
+              <div class="mb-3 w-full flex-col flex text-sm">
+                <label for="email" class="font-semibold text-gray-600 my-4"
+                  >Email <abbr title="required">*</abbr></label>
+                <.input
+                  placeholder="Email"
+                  class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                  required="required"
+                  type="email"
+                  field={@form[:email]}
+                  id="email"
+                  phx-debounce="blur"
+                />
+                <p class="text-red text-sm hidden">
+                  Please fill out this field.
+                </p>
+              </div>
+            </div>
+            <div class="md:flex md:flex-row md:space-x-4 w-full text-sm">
+              <div class="w-full flex flex-col mb-3">
+                <label class="font-semibold text-gray-600 my-4"
+                  >User Address</label>
+                <input
+                  placeholder="Address"
+                  class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                  type="text"
+                  name="integration[street_address]"
+                  id="integration_street_address"
+                />
+              </div>
+              <div class="w-full flex flex-col mb-3">
+                <label class="font-semibold text-gray-600 my-4"
+                  >Location<abbr title="required">*</abbr></label>
+                <select
+                  class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full"
+                  name="integration[city_id]"
+                  id="integration_city_id"
+                >
+                  <option value="">Seleted location</option>
+                  <option value="">Cochin,KL</option>
+                  <option value="">Mumbai,MH</option>
+                  <option value="">Bangalore,KA</option>
+                </select>
+                <p class=" text-red-500 hidden mt-3" id="error">
+                  Please fill out this field.
+                </p>
+              </div>
+            </div>
+            <div class="mb-3 w-full flex-col flex text-sm">
+              <label for="password" class="font-semibold text-gray-600 my-4"
+                >Password <abbr title="required">*</abbr></label>
+              <.input
+                placeholder="Password"
+                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                required="required"
+                type="password"
+                field={@form[:password]}
+                id="password"
+                phx-debounce="blur"
+              />
+              <p class="text-red text-sm hidden">
+                Please fill out this field.
+              </p>
+            </div>
+            <p class="text-sm text-red-500 my-3">
+              Required fields are marked with an asterisk
+              <abbr title="Required field">*</abbr>
+            </p>
+            <div
+              class="mt-5 text-right md:space-x-3 md:block w-full flex justify-end"
+            >
+              <button
+                class="mb-2 md:mb-0 bg-white px-5 py-2  shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"
+              >
+                Cancel
+              </button>
+              <.button phx-disable-with="Creating..."
+                class="mb-2 md:mb-0 bg-[#4094F7] px-5 py-2  shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-blue-500"
+              >
+                Save
+              </.button>
+            </div>
+          </div>
+       </.form>
+      </div>
+    </div>
+  </div>
+</div>
